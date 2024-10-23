@@ -21,7 +21,11 @@ const initDb = (callback) => {
         .listDatabases()
         .then((response) => {
           const databases = response.databases;
-          console.log('Databases from MongoClient connection:', databases[0]);
+          console.log(
+            'From "DB" folder - Databases from MongoClient connection:\n',
+            databases[1],
+            '\n(Result is Dependent on Database Order)'
+          );
         });
     })
     .catch((err) => {
