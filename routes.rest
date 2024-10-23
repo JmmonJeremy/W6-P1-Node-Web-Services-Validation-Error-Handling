@@ -49,26 +49,26 @@ DELETE http://localhost:3000/contacts/66fe08c7b9dffdc00f411ba4 HTTP/1.1
 
 // PRODUCTION Deploy
 // getting the API docs from Swagger
-GET https://w6-p1-node-web-services-validation-error-handling/api-docs
+GET https://w6-p1-node-web-services-validation-error.onrender.com/api-docs
 ### 
 // RETRIEVING CONTACTS WITH GET
 ### home page
-GET https://w6-p1-node-web-services-validation-error-handling HTTP/1.1
+GET https://w6-p1-node-web-services-validation-error.onrender.com HTTP/1.1
 ### all contacts
-GET https://w6-p1-node-web-services-validation-error-handling/contacts
+GET https://w6-p1-node-web-services-validation-error.onrender.com/contacts
 ### Bryan
-GET https://w6-p1-node-web-services-validation-error-handling/contacts/66f77d6c74ad0f43e4341169
+GET https://w6-p1-node-web-services-validation-error.onrender.com/contacts/66f77d6c74ad0f43e4341169
 ### Victoria
-GET https://w6-p1-node-web-services-validation-error-handling/contacts/66f77d6c74ad0f43e434116a
+GET https://w6-p1-node-web-services-validation-error.onrender.com/contacts/66f77d6c74ad0f43e434116a
 ### Ammon
-GET https://w6-p1-node-web-services-validation-error-handling/contacts/66f77d6c74ad0f43e434116b
+GET https://w6-p1-node-web-services-validation-error.onrender.com/contacts/66f77d6c74ad0f43e434116b
 ### Miriam
-GET https://w6-p1-node-web-services-validation-error-handling/contacts/67083f1820e41367f6a90c05
+GET https://w6-p1-node-web-services-validation-error.onrender.com/contacts/67083f1820e41367f6a90c05
 ### Elizabeth
-GET https://w6-p1-node-web-services-validation-error-handling/contacts/67083f1820e41367f6a90c06
+GET https://w6-p1-node-web-services-validation-error.onrender.com/contacts/67083f1820e41367f6a90c06
 // CREATING CONTACT WITH POST
 ### 
-POST https://w6-p1-node-web-services-validation-error-handling/contacts/ 
+POST https://w6-p1-node-web-services-validation-error.onrender.com/contacts/ 
 Content-Type: application/json
 
 {
@@ -81,7 +81,7 @@ Content-Type: application/json
 }
 // ALTERING A CONTACT WITH PUT
 ###
-PUT https://w6-p1-node-web-services-validation-error-handling/contacts/66fe08c7b9dffdc00f411ba4
+PUT https://w6-p1-node-web-services-validation-error.onrender.com/contacts/66fe08c7b9dffdc00f411ba4
 Content-Type: application/json
 
 {
@@ -93,5 +93,5 @@ Content-Type: application/json
 }
 ###
 // REMOVING A CONTACT WITH DELETE
-DELETE https://w6-p1-node-web-services-validation-error-handling/contacts/66fe08c7b9dffdc00f411ba4 HTTP/1.1
+DELETE https://w6-p1-node-web-services-validation-error.onrender.com/contacts/6708978dfce312c5bcdbc01a HTTP/1.1
 ###
