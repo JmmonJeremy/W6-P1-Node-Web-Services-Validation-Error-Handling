@@ -1,0 +1,237 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "contacts-api",
+    "description": "Contact List API for BYU-Idaho CSE341 Personal Project",
+    "version": "1.0.0"
+  },
+  "host": "w6-p1-node-web-services-validation-error-handling.onrender.com",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Dislaying name for home CONTACTS page with added schema to meet mastery API DOCUMENTATION requirements",
+        "description": "Name of someone close to me (my 4 year old daughter)",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "successNotification": {
+                  "type": "string",
+                  "example": "Miriam Olivia Suchanski"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contacts/": {
+      "get": {
+        "summary": "Getting ALL CONTACTS with added schema to meet mastery API DOCUMENTATION requirements",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "example": "any"
+                },
+                "lastName": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "favoriteColor": {
+                  "example": "any"
+                },
+                "birthday": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Demo CREATE contact info:  _id: 66fe08c7b9dffdc00f411ba4  firstName: Demo,  lastName: Fanny,  email: demo1@gmail.com,  favoriteColor: White,  birthday: 01/01/01",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "example": "any"
+                },
+                "lastName": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "favoriteColor": {
+                  "example": "any"
+                },
+                "birthday": {
+                  "example": "any"
+                },
+                "_id": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/contacts/{id}": {
+      "get": {
+        "summary": "Getting 1 CONTACT with added schema to meet mastery API DOCUMENTATION requirements",
+        "description": "Demo SELECT 1 contact options:  Bryan's _id: 66f77d6c74ad0f43e4341169  Victoria's _id: 66f77d6c74ad0f43e434116a  Ammon's _id: 66f77d6c74ad0f43e434116b  Miriam's _id: 67083f1820e41367f6a90c05  Elizabeth's _id: 67083f1820e41367f6a90c06  Demon's _id: 66fe08c7b9dffdc00f411ba4",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "example": "any"
+                },
+                "lastName": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "favoriteColor": {
+                  "example": "any"
+                },
+                "birthday": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "description": "Demo UPDATE contact info:  _id: 66fe08c7b9dffdc00f411ba4  firstName: Demonstration,  lastName: Funny,  email: 1demo1@gmail.com,  favoriteColor: Rainbow,  birthday: 01/01/1001",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "example": "any"
+                },
+                "lastName": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "favoriteColor": {
+                  "example": "any"
+                },
+                "birthday": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deleting 1 CONTACT with added schema to meet mastery API DOCUMENTATION requirements",
+        "description": "Demo DELETE 1 contact:  Demo or Demonstration's _id: 66fe08c7b9dffdc00f411ba4",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "successNotification": {
+                  "type": "string",
+                  "example": "The contact (name) with the id of (contactId) was successfully deleted from the contacts collection as requested."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api-docs": {
+      "get": {
+        "summary": "Swagger API Documentation UI Page with added schema to meet mastery API DOCUMENTATION requirements",
+        "description": "This is the Swagger API Documentation UI Page",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "successNotification": {
+                  "type": "string",
+                  "example": "You have successfully loaded the Swagger API Documentation UI Page!"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

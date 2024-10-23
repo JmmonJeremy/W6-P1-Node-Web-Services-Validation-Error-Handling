@@ -1,0 +1,97 @@
+// LOCALHOST
+// getting the API docs from Swagger
+GET http://localhost:3000/api-docs
+### 
+// RETRIEVING CONTACTS WITH GET
+### home page
+GET http://localhost:3000 HTTP/1.1
+### all contacts
+GET http://localhost:3000/contacts
+### Bryan
+GET http://localhost:3000/contacts/66f77d6c74ad0f43e4341169
+### Victoria
+GET http://localhost:3000/contacts/66f77d6c74ad0f43e434116a
+### Ammon
+GET http://localhost:3000/contacts/66f77d6c74ad0f43e434116b
+### Miriam
+GET http://localhost:3000/contacts/67083f1820e41367f6a90c05
+### Elizabeth
+GET http://localhost:3000/contacts/67083f1820e41367f6a90c06
+// CREATING CONTACT WITH POST
+### 
+POST http://localhost:3000/contacts HTTP/1.1 
+Content-Type: application/json
+
+{
+  "_id": "66fe08c7b9dffdc00f411ba4",
+  "firstName": "Demo",
+  "lastName": "Fanny",
+  "email": "demo1@gmail.com",
+  "favoriteColor": "White",
+  "birthday": "01/01/01"
+}
+// ALTERING A CONTACT WITH PUT
+###
+PUT http://localhost:3000/contacts/66fe08c7b9dffdc00f411ba4 HTTP/1.1 
+Content-Type: application/json
+
+{
+  "firstName": "Demonstration",
+  "lastName": "Funny",
+  "email": "1demo1@gmail.com",
+  "favoriteColor": "Rainbow",
+  "birthday": "01/01/1001"
+}
+###
+// REMOVING A CONTACT WITH DELETE
+DELETE http://localhost:3000/contacts/66fe08c7b9dffdc00f411ba4 HTTP/1.1
+###
+
+// PRODUCTION Deploy
+// getting the API docs from Swagger
+GET https://w6-p1-node-web-services-validation-error-handling/api-docs
+### 
+// RETRIEVING CONTACTS WITH GET
+### home page
+GET https://w6-p1-node-web-services-validation-error-handling HTTP/1.1
+### all contacts
+GET https://w6-p1-node-web-services-validation-error-handling/contacts
+### Bryan
+GET https://w6-p1-node-web-services-validation-error-handling/contacts/66f77d6c74ad0f43e4341169
+### Victoria
+GET https://w6-p1-node-web-services-validation-error-handling/contacts/66f77d6c74ad0f43e434116a
+### Ammon
+GET https://w6-p1-node-web-services-validation-error-handling/contacts/66f77d6c74ad0f43e434116b
+### Miriam
+GET https://w6-p1-node-web-services-validation-error-handling/contacts/67083f1820e41367f6a90c05
+### Elizabeth
+GET https://w6-p1-node-web-services-validation-error-handling/contacts/67083f1820e41367f6a90c06
+// CREATING CONTACT WITH POST
+### 
+POST https://w6-p1-node-web-services-validation-error-handling/contacts/ 
+Content-Type: application/json
+
+{
+  "_id": "66fe08c7b9dffdc00f411ba4",
+  "firstName": "Demo",
+  "lastName": "Fanny",
+  "email": "demo1@gmail.com",
+  "favoriteColor": "White",
+  "birthday": "01/01/01"
+}
+// ALTERING A CONTACT WITH PUT
+###
+PUT https://w6-p1-node-web-services-validation-error-handling/contacts/66fe08c7b9dffdc00f411ba4
+Content-Type: application/json
+
+{
+  "firstName": "Demonstration",
+  "lastName": "Funny",
+  "email": "1demo1@gmail.com",
+  "favoriteColor": "Rainbow",
+  "birthday": "01/01/1001"
+}
+###
+// REMOVING A CONTACT WITH DELETE
+DELETE https://w6-p1-node-web-services-validation-error-handling/contacts/66fe08c7b9dffdc00f411ba4 HTTP/1.1
+###
