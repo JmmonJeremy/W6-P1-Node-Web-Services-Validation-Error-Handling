@@ -1,5 +1,5 @@
 const { body, validationResult } = require('express-validator');
-const contactsModel = require('../controllers/contacts');
+const validationHelpers = require('../helpers/utilities');
 const validate = {};
 
 /*  **********************************
@@ -17,7 +17,7 @@ validate.newContactEmailRule = () => {
       .normalizeEmail() // refer to validator.js docs
       .withMessage('A valid email is required.')
       .custom(async (email) => {
-        const emailExists = await contactsModel.checkExistingEmail(email);
+        const emailExists = await validationHelpers.checkExistingEmail(email);
         if (emailExists) {
           throw new Error('This email already exists.');
         }
@@ -42,7 +42,7 @@ validate.updateContactEmailRule = () => {
       .custom(async (email, { req }) => {
         // Get the contactId from req.params.id
         const contactId = req.params.id;
-        const emailExists = await contactsModel.checkExistingEmailExceptUpdatingOne(
+        const emailExists = await validationHelpers.checkExistingEmailExceptUpdatingOne(
           email,
           contactId,
           req
@@ -125,21 +125,6 @@ validate.contactsRules = () => {
       .isLength({ min: 2 })
       .withMessage('Last name must contain at least 2 characters.'), // on error this message is sent.
 
-    // valid email is required and cannot already exist in the DB
-    // body('email')
-    //   .trim()
-    //   .escape()
-    //   .notEmpty()
-    //   .withMessage('Email Address Field Error') // when empty or invalid this message is sent rather than "Invalid value" when empty
-    //   .isEmail()
-    //   .normalizeEmail() // refer to validator.js docs
-    //   .withMessage('A valid email is required.')
-    //   .custom(async (email) => {
-    //     const emailExists = await contactsModel.checkExistingEmail(email);
-    //     if (emailExists) {
-    //       throw new Error('This email already exists.');
-    //     }
-    //   }),
     // favoriteColor is required and must be a string
     body('favoriteColor')
       .trim()
@@ -173,10 +158,6 @@ validate.contactsRules = () => {
  * Check data and return errors or continue to create or update contact
  * ****************************************************************** */
 validate.checkContactData = async (req, res, next) => {
-  console.log('firstName:', req.body.firstname);
-  console.log('lastName:', req.body.lastname);
-  console.log('Email:', req.body.email);
-
   const errors = validationResult(req);
   console.log(errors);
   if (errors.isEmpty()) {

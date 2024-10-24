@@ -104,6 +104,9 @@ const getSpecificContact = async (req, res) => {
         } 
       }  
    */
+  if (!ObjectId.isValid(req.params.id)) {
+    res.status(400).json('Must use a valid contact id to find a contact.');
+  }
   try {
     // Create a variable to hold the object of the contact id
     const contactId = new ObjectId(req.params.id.toString());
@@ -173,14 +176,14 @@ const createContact = async (req, res) => {
     const actionResult = await collection.insertOne(contact);
     // Return the id # and success
     console.log(actionResult);
-    if (response.acknowledged) {
+    if (actionResult.acknowledged) {
       res.status(201).json(actionResult);
     } else {
-      res.status(500).json(response.error || 'Some error occured while creating contact.');
+      res.status(500).json(response.error || 'Some error occurred while creating contact.');
     }
   } catch (error) {
     console.error('Error inserting data: ', error);
-    res.status(500).json({ message: 'Error occured while creating contact.' });
+    res.status(500).json({ message: 'Error occurred while creating contact.' });
   }
 };
 
@@ -195,6 +198,9 @@ const updateContact = async (req, res) => {
     favoriteColor:  Rainbow,
     birthday:       01/01/1001'
   */
+  if (!ObjectId.isValid(req.params.id)) {
+    res.status(400).json('Must use a valid contact id to update a contact.');
+  }
   try {
     // Create a variable to hold the object of the contact id
     const contactId = new ObjectId(req.params.id.toString());
@@ -261,6 +267,9 @@ const removeContact = async (req, res) => {
           } 
         }    
    */
+  if (!ObjectId.isValid(req.params.id)) {
+    res.status(400).json('Must use a valid contact id to delete a contact.');
+  }
   try {
     // Create a variable to hold the object of the contact id
     const contactId = new ObjectId(req.params.id.toString());
@@ -296,106 +305,10 @@ const removeContact = async (req, res) => {
   }
 };
 
-/* **********************
- *   Check for existing email
- * ********************* */
-const checkExistingEmail = async (new_email, req, res) => {
-  try {
-    // Get the database object & report name
-    const db = mongodb.getDb().db();
-    console.log('Connected to DB:', db.databaseName);
-    // Get the "user" "collection" in other words table
-    const collection = db.collection('contacts');
-    // Get a specific entry from the "document"
-    const result = await collection.find({ email: new_email });
-    // Turn the entry into an item in a list
-    const contactsInfoList = await result.toArray();
-    // See if there is anything in the table or "collection" & report
-    var entries = contactsInfoList.length;
-    if (entries === 0) {
-      console.log('No contact found in the contacts collection matches.');
-      return entries;
-    } else {
-      console.log(`There is already"${entries}" email like this in the contacts collection.`);
-      return entries;
-    }
-  } catch (error) {
-    console.error('Error fetching data: ', error);
-    res.status(500).json({ message: 'Internal server error' });
-  }
-};
-
-// function to get email string from database for 1 contact
-const getEmailById = async (req, res) => {
-  try {
-    // Create a variable to hold the object of the contact id
-    const contactId = new ObjectId(req.params.id.toString());
-    // Get the database object & report name
-    const db = mongodb.getDb().db();
-    console.log('Connected to DB:', db.databaseName);
-    // Get the "user" "collection" in other words table
-    const collection = db.collection('contacts');
-    // Get a specific entry from the "document"
-    const result = await collection.findOne({ _id: contactId });
-
-    // Check if a contact was found
-    if (!result) {
-      console.log('No contact found in the contacts collection matches.');
-      return null;
-    } else {
-      // Return the email
-      return result.email;
-    }
-  } catch (error) {
-    console.error('Error fetching data: ', error);
-    res.status(500).json({ message: 'Internal server error' });
-  }
-};
-
-// Check for existing email except for the email of a specific contact
-const checkExistingEmailExceptUpdatingOne = async (new_email, contactId, req, res) => {
-  try {
-    // Get the database object & report name
-    const db = mongodb.getDb().db();
-    console.log('Connected to DB:', db.databaseName);
-
-    // Get the "contacts" collection
-    const collection = db.collection('contacts');
-
-    // Get the existing email for the specified contact
-    const existingContactEmail = await getEmailById({ params: { id: contactId } }, res);
-
-    // If there was an error getting the email or no email returned, return
-    if (typeof existingContactEmail === 'object' && existingContactEmail.status === 404) {
-      return 0; // No contact found, so return 0
-    }
-
-    // Check for existing emails except for the current contact's email
-    const result = await collection.find({ email: new_email }).toArray();
-
-    // Filter out the existing email of the contact being updated
-    const entries = result.filter((contact) => contact.email !== existingContactEmail).length;
-
-    if (entries === 0) {
-      console.log('No contact found in the contacts collection matches.');
-      return entries;
-    } else {
-      console.log(`There is already "${entries}" email(s) like this in the contacts collection.`);
-      return entries;
-    }
-  } catch (error) {
-    console.error('Error fetching data: ', error);
-    res.status(500).json({ message: 'Internal server error' });
-  }
-};
-
 module.exports = {
   getAllContacts,
   getSpecificContact,
   createContact,
   updateContact,
-  removeContact,
-  checkExistingEmail,
-  getEmailById,
-  checkExistingEmailExceptUpdatingOne
+  removeContact
 };
